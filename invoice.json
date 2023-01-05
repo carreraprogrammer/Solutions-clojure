@@ -1,0 +1,59 @@
+{
+  "invoice": {
+    "issue_date": "13/10/2020",
+    "order_reference": "PEDID_0001",
+    "payment_date": "12/11/2020",
+    "payment_means": "DEBIT_CARD",
+    "payment_means_type": "DEBITO",
+    "number": "1",
+    "customer": {
+      "company_name": "ANDRADE RODRIGUEZ MANUEL ALEJANDRO",
+      "email": "cgallegoaecu@gmail.com"
+    },
+    "items": [
+      {
+        "price": 10000.00,
+        "quantity": 1.00,
+        "sku": "SUPER-1",
+        "taxes": [
+          {
+            "tax_category": "IVA",
+            "tax_rate": 5
+          }
+        ]
+      },
+      {
+        "price": 20000.00,
+        "quantity": 1.00,
+        "sku": "SUPER-2",
+        "taxes": [
+          {
+            "tax_category": "IVA",
+            "tax_rate": 19
+          }
+        ]
+      },
+      {
+        "price": 30000.00,
+        "quantity": 1.00,
+        "sku": "SUPER-3",
+        "taxes": [
+          {
+            "tax_category": "IVA",
+            "tax_rate": 19
+          }
+        ]
+      }
+    ],
+    "retentions": [
+      {
+        "tax_category": "RET_FUENTE",
+        "tax_rate": 15.00
+      },
+      {
+        "tax_category": "RET_IVA",
+        "tax_rate": 15.0
+      }
+    ]
+  }
+}
