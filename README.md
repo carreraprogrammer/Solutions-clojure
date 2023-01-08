@@ -4,9 +4,9 @@
 
 This clojure challenge is made up of 3 questions that reflect the learning you accumulated for the past week. Complete the following instructions:
 
-1. Create a Github repo before starting the challenge and share it with us
-1. Duration: 2 hours. Checking your work regularly until the 2 hour mark
-1. Include the following dependencies in your deps.edn
+1. Create a Gitlab repo of your own and fork this repo. When complete, send us the link to your challenge results.
+1. Duration: 4 hours. Checking your work regularly until the 4 hour mark
+1. Create a deps.edn file and include the following dependencies
 
 org.clojure/data.json  {:mvn/version "0.2.6"}
 
