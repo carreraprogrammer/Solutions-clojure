@@ -28,15 +28,15 @@ Given the invoice defined in **invoice.edn** in this GoogleDrive folder, use the
 
 ```
 {:invoice-item/id     "ii2"  
-    :invoice-item/sku "SKU 2"}
+  :invoice-item/sku "SKU 2"}
 ```
 
 - An invoice has two fields :invoice/id (its identifier) and :invoice/items a vector of invoice items
 
 #### Invoice Item Conditions
-- At least have one item that has IVA 19
+- At least have one item that has :iva 19%
 - At least one item has retention :ret\_fuente 1%
-- Every item must satisfy EXACTLY one of the above two conditions. This means that an item cannot have BOTH IVA 19 and retention :ret\_fuente 1%.
+- Every item must satisfy EXACTLY one of the above two conditions. This means that an item cannot have BOTH :iva 19% and retention :ret\_fuente 1%.
 ## Problem 2: Core Generating Functions
   Given the invoice defined in **invoice.json** found in this GoogleDrive, generate an invoice that passes the spec **::invoice** defined in **invoice-spec.clj**. Write a function that as an argument receives a file name (a JSON file name in this case) and returns a clojure map such that
 
