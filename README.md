@@ -8,7 +8,9 @@ This clojure challenge is made up of 3 questions that reflect the learning you a
 1. Duration: 4 hours. Checking your work regularly until the 4 hour mark
 1. Create a deps.edn file and include the following dependencies
 
+```
 org.clojure/data.json  {:mvn/version "0.2.6"}
+```
 
 1. Enjoy!
 ## Problems
@@ -17,13 +19,17 @@ Given the invoice defined in **invoice.edn** in this GoogleDrive folder, use the
 #### Requirements
 - Load invoice to play around with the function like this:
 
-```(def invoice (clojure.edn/read-string (slurp "invoice.edn")))
+```
+(def invoice (clojure.edn/read-string (slurp "invoice.edn")))
+```
 
 #### Definitions
 - An invoice item is a clojure map { … } which has an :invoice-item/id field. EG.
 
-```{:invoice-item/id     "ii2"  
+```
+{:invoice-item/id     "ii2"  
     :invoice-item/sku "SKU 2"}
+```
 
 - An invoice has two fields :invoice/id (its identifier) and :invoice/items a vector of invoice items
 
@@ -34,7 +40,9 @@ Given the invoice defined in **invoice.edn** in this GoogleDrive folder, use the
 ## Problem 2: Core Generating Functions
   Given the invoice defined in **invoice.json** found in this GoogleDrive, generate an invoice that passes the spec **::invoice** defined in **invoice-spec.clj**. Write a function that as an argument receives a file name (a JSON file name in this case) and returns a clojure map such that
 
-```(s/valid? ::invoice invoice) => true 
+```
+(s/valid? ::invoice invoice) => true 
+```
 
 where invoice represents an invoice constructed from the JSON.
 ## Problem 3: Test Driven Development
