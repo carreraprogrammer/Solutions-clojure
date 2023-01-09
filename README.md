@@ -17,13 +17,12 @@ Given the invoice defined in **invoice.edn** in this GoogleDrive folder, use the
 #### Requirements
 - Load invoice to play around with the function like this:
 
-`  `(def invoice (clojure.edn/read-string (slurp "invoice.edn")))
+```(def invoice (clojure.edn/read-string (slurp "invoice.edn")))```
 #### Definitions
 - An invoice item is a clojure map { … } which has an :invoice-item/id field. EG.
 
-{:invoice-item/id     "ii2"  
-
-` `:invoice-item/sku "SKU 2"}
+```{:invoice-item/id     "ii2"  
+    :invoice-item/sku "SKU 2"}```
 
 - An invoice has two fields :invoice/id (its identifier) and :invoice/items a vector of invoice items
 #### Invoice Item Conditions
@@ -31,9 +30,9 @@ Given the invoice defined in **invoice.edn** in this GoogleDrive folder, use the
 - At least one item has retention :ret\_fuente 1%
 - Every item must satisfy EXACTLY one of the above two conditions. This means that an item cannot have BOTH IVA 19 and retention :ret\_fuente 1%.
 ## Problem 2: Core Generating Functions
-`     `Given the invoice defined in **invoice.json** found in this GoogleDrive, generate an invoice that passes the spec **::invoice** defined in **invoice-spec.clj**. Write a function that as an argument receives a file name (a JSON file name in this case) and returns a clojure map such that
+  Given the invoice defined in **invoice.json** found in this GoogleDrive, generate an invoice that passes the spec **::invoice** defined in **invoice-spec.clj**. Write a function that as an argument receives a file name (a JSON file name in this case) and returns a clojure map such that
 
-(s/valid? ::invoice invoice) ; => true 
+```(s/valid? ::invoice invoice) => true``` 
 
 where invoice represents an invoice constructed from the JSON.
 ## Problem 3: Test Driven Development
