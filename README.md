@@ -5,14 +5,15 @@
 This clojure challenge is made up of 3 questions that reflect the learning you accumulated for the past week. Complete the following instructions:
 
 1. Create a Gitlab repo of your own and fork this repo. When complete, send us the link to your challenge results.
-1. Duration: About 4 hours
-1. Create a deps.edn file and include the following dependencies
+2. Duration: About 4 hours
+3. Install Cursive Plugin to Intellij and setup a clojure deps project. https://cursive-ide.com/userguide/deps.html  
 
 ```
 org.clojure/data.json  {:mvn/version "0.2.6"}
 ```
 
 1. Enjoy!
+
 ## Problems
 ### Problem 1 Thread-last Operator ->>
 Given the invoice defined in **invoice.edn** in this repo, use the thread-last ->> operator to find all invoice items that satisfy the given conditions. Please write a function that receives an invoice as an argument and returns all items that satisfy the conditions described below.
