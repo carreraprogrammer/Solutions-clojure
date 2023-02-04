@@ -7,3 +7,10 @@
               :invoice-item/precise-price 15}]
     (is (= 75.0 (subtotal item)))))
 
+(deftest test-without-price
+  (let [item {:invoice-item/precise-quantity 10
+              :discount-rate 10}]
+    (is (= nil (subtotal item) ))))
+
+
+
