@@ -35,21 +35,20 @@
                     ]
                     [{:invoice-item/price (double price)
                       :invoice-item/quantity (double quantity)
-                      :invoice-item/:sku (str sku)
-                      :invoice-item/:taxes [
-                                            {:tax/category :iva
-                                             :tax/rate (double rate)}
-                                            ]
+                      :invoice-item/sku (str sku)
+                      :invoice-item/taxes  [{:tax/category :iva
+                                             :tax/rate (double rate)}]
+
                           }])]
-     {:invoice
-     {
-      :invoice/issue-date (read-instant-date (transform-date issue-date))
+
+      {:invoice/issue-date (read-instant-date (transform-date issue-date))
       :invoice/customer {:customer/name name
                          :customer/email email}
-      :invoice/items items
-      }}
+      :invoice/items items}
+
     ))
 
 (validate-invoice data)
 
+(s/explain ::test/invoice (validate-invoice data))
 (s/valid? ::test/invoice (validate-invoice data))
