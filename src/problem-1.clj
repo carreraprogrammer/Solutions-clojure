@@ -1,22 +1,37 @@
 
-(defn conditions
-  [item]
-  "Generate the conditions that satisfy the requirements of the problem"
+;; First condition for the item: The item should have a taxe equal to determinated rate
+
+(defn has-tax-with-rate [taxes rate]
+  (some (fn [tax] (= rate (:tax/rate tax))) taxes))
+
+;; Second condition for the item: The item should have a retention equal to determinated rate
+
+(defn has-retention-with-rate [retentions rate]
+  (some (fn [ret] (= rate (:retention/rate ret))) retentions))
+
+;; The three conditions together for this particular problem:
+;;; 1- The item should have at least a tax with IVA = 19
+;;; 1- The item should have at least a tax with ret = 1
+;;; 3- The item should not have both at the same time
+
+(defn conditions [item]
   (let [taxes (:taxable/taxes item)
         retentions (:retentionable/retentions item)]
-    (or (and (some (fn [tax] (= 19 (:tax/rate tax))) taxes) (not (some (fn [ret] (= 1 (:retention/rate ret))) retentions)))
-        (and (not (some (fn [tax] (= 19 (:tax/rate tax))) taxes)) (some (fn [ret] (= 1 (:retention/rate ret))) retentions)))))
+    (or (and (has-tax-with-rate taxes 19) (not (has-retention-with-rate retentions 1)))
+        (and (not (has-tax-with-rate taxes 19)) (has-retention-with-rate retentions 1)))))
+
+;; The function that returned me the filtered invoice that satisfy all the arguments
 
 (defn filter-invoice
   "Filter the invoice items that satisfy the conditions provided"
   [invoice]
-  (filter conditions (:invoice/items invoice)))             ;; (filter CONDITIONS COLLECTION)
+  (->> (:invoice/items invoice)
+       (filter conditions)))
+
+;; This part of the code transform "invoice.edn" and save the map in a variable called invoice
 
 (def invoice (clojure.edn/read-string (slurp "invoice.edn")))
 
-(filter-invoice invoice)
+;; Here you can verify the filtered list
 
-;; 3. What are the conditions?
-;;; - The first condition is that the item should have at least one iva = 19 % OR :ret-fuente 1%
-;;; - The second condition is that the item should have EXACTLY one of the two conditions
-;;; - The THIRD condition is that Every item must satisfy EXACTLY one of the above two conditions. This means that an item cannot have BOTH :iva 19% and retention :ret_fuente 1%.
+(filter-invoice invoice)
