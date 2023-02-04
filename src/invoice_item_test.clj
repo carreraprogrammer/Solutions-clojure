@@ -11,3 +11,9 @@
   (let [item {:invoice-item/precise-quantity 20
               :invoice-item/precise-price -20}]
     (is (= -400.0 (subtotal item)))))
+
+(deftest test-with-negative-quantity
+  (let [item {:invoice-item/precise-quantity -20
+              :invoice-item/precise-price 220}]
+    (is (= -4400.0 (subtotal item)))))
+
