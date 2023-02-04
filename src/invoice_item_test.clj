@@ -17,3 +17,8 @@
               :invoice-item/precise-price 220}]
     (is (= -4400.0 (subtotal item)))))
 
+(deftest test-discount-greater-than-100
+  (let [item {:invoice-item/precise-quantity 2
+              :invoice-item/precise-price 20
+              :invoice-item/discount-rate 200}]
+    (is (= -40.0 (subtotal item)))))
