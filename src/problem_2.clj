@@ -15,11 +15,15 @@
                     quantity (:quantity (nth (:items invoice) 0))
                     sku (:sku (nth (:items invoice) 0))
                     taxes (:taxes (nth (:items invoice) 0))
+                    rate (:tax_rate (first taxes))
                     ]
-                    [{ :price (double price)
-                      :quantity (double quantity)
-                      :sku (str sku)
-                      :taxes taxes
+                    [{:invoice-item/price (double price)
+                      :invoice-item/quantity (double quantity)
+                      :invoice-item/:sku (str sku)
+                      :invoice-item/:taxes [
+                                            :tax/category :iva
+                                            :tax/rate (double rate)
+                                            ]
                           }])]
     {:invoice
      {
