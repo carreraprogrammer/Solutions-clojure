@@ -5,18 +5,22 @@
 (def invoice-str (slurp "invoice.json"))
 (def data (json/read-str invoice-str :key-fn keyword))
 
-;; I need a function that lend me extract data from a high level key, to iterate and put it in my new invoice
-
-(defn extract-values [items keys]
-  (map #(select-keys % keys) items))
-
 (defn validate-invoice [data]
   (let [invoice (:invoice data)
         customer (:customer invoice)
         name (str (:company_name customer))
         email (str (:email customer))
         issue-date (:issue_date invoice)
-        items (:items invoice)]
+        items (let [price (:price (nth (:items invoice) 0))
+                    quantity (:quantity (nth (:items invoice) 0))
+                    sku (:sku (nth (:items invoice) 0))
+                    taxes (:taxes (nth (:items invoice) 0))
+                    ]
+                    [{ :price price
+                      :quantity quantity
+                      :sku sku
+                      :taxes taxes
+                          }])]
     {:invoice
      {
       :issue_date issue-date
