@@ -2,11 +2,6 @@
   (:require
     [clojure.spec.alpha :as s] ))
 
-(s/def :customer/name string?)                              ;; :customer/name should be a string
-(s/def :customer/email string?)                             ;; :customer/email should be a string
-(s/def :invoice/customer (s/keys :req [:customer/name       ;; :invoice/customer should have two keys, :customer/name and :customer/email
-                                       :customer/email]))
-
 (s/def :customer/name string?) ;; :customer/name should be a string
 (s/def :customer/email string?) ;; :customer/email should be a string
 (s/def :invoice/customer (s/keys :req [:customer/name ;; :invoice/customer should have two keys, :customer/name and :customer/email

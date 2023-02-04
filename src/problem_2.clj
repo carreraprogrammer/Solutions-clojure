@@ -16,7 +16,25 @@
       :issue_date issue-date
       :invoice/customer {:customer/name name
                          :customer/email email}
-
+      :invoice/items [{
+                       :invoice-item/price ""
+                       :invoice-item/quantity ""
+                       :invoice-item/sku ""
+                       :invoice-item/taxes []
+                       }
+                      {
+                       :invoice-item/price ""
+                       :invoice-item/quantity ""
+                       :invoice-item/sku ""
+                       :invoice-item/taxes []
+                       }
+                      {
+                       :invoice-item/price ""
+                       :invoice-item/quantity ""
+                       :invoice-item/sku ""
+                       :invoice-item/taxes []
+                       }
+                      ]
       }}
     ))
 
