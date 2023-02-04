@@ -25,8 +25,10 @@
 (defn filter-invoice
   "Filter the invoice items that satisfy the conditions provided"
   [invoice]
-  (->> (:invoice/items invoice)
-       (filter conditions)))
+  (if (empty? (:invoice/items invoice))
+    (println "Error: The invoice has no items.")
+    (->> (:invoice/items invoice)
+         (filter conditions))))
 
 ;; This part of the code transform "invoice.edn" and save the map in a variable called invoice
 
