@@ -16,9 +16,9 @@
                     sku (:sku (nth (:items invoice) 0))
                     taxes (:taxes (nth (:items invoice) 0))
                     ]
-                    [{ :price price
-                      :quantity quantity
-                      :sku sku
+                    [{ :price (double price)
+                      :quantity (double quantity)
+                      :sku (str sku)
                       :taxes taxes
                           }])]
     {:invoice
