@@ -12,7 +12,11 @@
   [invoice]
   (filter conditions (:invoice/items invoice)))             ;; (filter CONDITIONS COLLECTION)
 
+(def invoice (clojure.edn/read-string (slurp "invoice.edn")))
+
+(filter-invoice invoice)
 
 ;; 3. What are the conditions?
 ;;; - The first condition is that the item should have at least one iva = 19 % OR :ret-fuente 1%
 ;;; - The second condition is that the item should have EXACTLY one of the two conditions
+;;; - The THIRD condition is that Every item must satisfy EXACTLY one of the above two conditions. This means that an item cannot have BOTH :iva 19% and retention :ret_fuente 1%.
