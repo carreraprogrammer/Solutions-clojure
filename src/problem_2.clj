@@ -26,6 +26,12 @@
 
 ;; Validate an invoice data structure
 
+
+(defn validate-invoice2 [{:data/keys [invoice]}]
+  (let [{:invoice/keys [items customer issue_date]} invoice]
+
+    (println customer)))
+
 (defn validate-invoice [data]
   (let [invoice (:invoice data)
         customer (:customer invoice)
