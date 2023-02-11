@@ -27,10 +27,22 @@
 ;; Validate an invoice data structure
 
 
-(defn validate-invoice2 [{:data/keys [invoice]}]
-  (let [{:invoice/keys [items customer issue_date]} invoice]
-
-    (println customer)))
+(defn validate-invoice2 [{:keys [invoice]}]
+  (let [{:keys [issue_date customer items ]} invoice
+        items-data (map (fn [item]
+                          {:invoice-item/price (double (:price item))
+                           :invoice-item/quantity (double (:quantity item))
+                           :invoice-item/sku (:sku item)
+                           :invoice-item/taxes (map (fn [tax]
+                                                              {:invoice-tax/tax-category (:tax_category tax)
+                                                               :invoice-tax/tax-rate (double (:tax_rate tax))})
+                                                               :taxes item)})
+                        items)
+        ]
+    {:invoice/issue-date (read-instant-date (transform-date issue_date))
+     :invoice/customer {:customer/name (:company_name customer)
+                        :customer/email (:email customer)}
+     :invoice/items (into [] items-data)}))
 
 (defn validate-invoice [data]
   (let [invoice (:invoice data)
@@ -44,18 +56,18 @@
                     taxes (:taxes (nth (:items invoice) 0))
                     rate (:tax_rate (first taxes))
                     ]
-                    [{:invoice-item/price (double price)
-                      :invoice-item/quantity (double quantity)
-                      :invoice-item/sku (str sku)
-                      :invoice-item/taxes  [{:tax/category :iva
-                                             :tax/rate (double rate)}]
+                [{:invoice-item/price (double price)
+                  :invoice-item/quantity (double quantity)
+                  :invoice-item/sku (str sku)
+                  :invoice-item/taxes  [{:tax/category :iva
+                                         :tax/rate (double rate)}]
 
-                          }])]
+                  }])]
 
-      {:invoice/issue-date (read-instant-date (transform-date issue-date))
-      :invoice/customer {:customer/name name
-                         :customer/email email}
-      :invoice/items items}
+    {:invoice/issue-date (read-instant-date (transform-date issue-date))
+     :invoice/customer {:customer/name name
+                        :customer/email email}
+     :invoice/items items}
 
     ))
 
@@ -63,7 +75,7 @@
 (validate-invoice data)
 
 ;; Look for errors in the data structure
-(s/explain ::test/invoice (validate-invoice data))
+(s/explain ::test/invoice (validate-invoice2 data))
 
 ;; Check if the data structure is valid according to the specifications
-(s/valid? ::test/invoice (validate-invoice data))
+(s/valid? ::test/invoice (validate-invoice2 data))
